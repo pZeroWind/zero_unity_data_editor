@@ -1,3 +1,4 @@
+//侧边栏数据
 export interface AppSideBarItem{
     name:string,
     icon:string,
@@ -5,6 +6,7 @@ export interface AppSideBarItem{
     children: Array<AppSideBarItemChild>
 }
 
+//侧边栏子数据
 export interface AppSideBarItemChild{
     name:string,
     icon:string,

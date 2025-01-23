@@ -1,7 +1,9 @@
+"use client";
 import { AppSideBarItem } from "@/app/models/app-sidebar";
 import Image from "next/image";
+import { useState } from "react";
 
-export default async function AppSideBar({
+export default function AppSideBar({
     headerName,
     tabConfig
 }: Readonly<{
@@ -41,17 +43,26 @@ export default async function AppSideBar({
         )
     })
 
+    const [weight, setWeight] = useState("w-64");
+
     return (
-        <aside className="relative w-64 bg-black z-40 shadow-[5px_0_10px_rgba(0,0,0,0.5)] text-white flex-shrink-0 select-none">
-            <div className="p-4">
-                <h2 className="text-2xl p-2 font-bold">{headerName}</h2>
-                <ul className="mt-4 space-y-2">
-                    {sideBarTabsHTML}
-                </ul>
+        <aside className={ `relative ${weight} bg-black z-40 shadow-[5px_0_10px_rgba(0,0,0,0.5)] text-white flex-shrink-0 select-none transition-all`}>
+            <div className={`${weight} overflow-hidden`}>
+                <div className="p-4 w-64">
+                    <h2 className="text-2xl p-2 font-bold">{headerName}</h2>
+                    <ul className="mt-4 space-y-2">
+                        {sideBarTabsHTML}
+                    </ul>
+                </div>
             </div>
             <div className="absolute bottom-[50%] right-[-20px]">
-                <button className="bg-gray-600 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 focus:outline-none">
-                    
+                <button className="bg-gray-600 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 focus:outline-none"
+                    onClick={()=>{
+                        if(weight == "w-64")
+                            setWeight("w-0");
+                        else
+                            setWeight("w-64");
+                    }}>
                 </button>
             </div>
         </aside>
